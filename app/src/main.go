@@ -1,13 +1,10 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"mvc_test/controller"
+)
 
 func main() {
-	r := gin.Default()
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"STRAT": "Hello,world!",
-		})
-	})
-	r.Run()
+	router := controller.GetRouter()
+	router.Run()
 }
