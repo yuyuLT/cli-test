@@ -1,6 +1,6 @@
 package model
 
 func GetMessage()(string){
-	message := "表示するメッセージが入ります"
+	message := "変数で入力したメッセージです"
 	return message
 }
