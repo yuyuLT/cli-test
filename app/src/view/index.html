@@ -1,11 +1,55 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta httpequiv="ContentType" content="text/html;charset=utf8">
-        <title>INDEX</title>
-    </head>
-    <body>
-        <h1>INDEX</h1>
-        <p>{{ .message }}</p>
-    </body>
+
+<head>
+    <meta httpequiv="ContentType" content="text/html;charset=utf8">
+    <title>Idea Pot</title>
+</head>
+
+<body>
+    <header style="background-color:aqua; height:100px">
+        <div class="login">ログイン</div>
+    </header>
+    <div class="content" style="background-color:pink; height:700px">
+        <div class="site-description">
+            <div class="site-title">
+                <p>Idea Pot</p>
+            </div>
+            <div class="image-picture">
+                <img src='../images/pot.jpg' alt="鍋のピクト" style="width:10%">
+            </div>
+        </div>
+        <div class="register-form">
+            <div class="register-message">
+                <p>思いついたことを鍋に入れておこう</p>
+            </div>
+            <form action="/" method="post">
+                <input type="text">
+                <input type="submit" value="IN 鍋"><br>
+            </form>
+        </div>
+        <div class="memo-list">
+            <ul>
+                <li class="list-item">
+                    <div class="memo-date">2022-09-07</div>
+                    <div class="memo-content">テーマを寝かせる</div>
+                </li>
+                <li class="list-item">
+                    <div class="memo-date">2022-09-09</div>
+                    <div class="memo-content">月光会</div>
+                </li>
+                <li class="list-item">
+                    <div class="memo-date">2022-09-22</div>
+                    <div class="memo-content">アート</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <footer style="background-color:green; height:100px">
+        <div class="copy-right">©︎ 2022 @yuyuLT</div>
+    </footer>
+
+    <p>{{ .message }}</p>
+</body>
+
 </html>
