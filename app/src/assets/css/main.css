@@ -1,0 +1,27 @@
+header {
+    background-color: #000000;
+    height: 150px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.site-title {
+    width: 20%;
+    color: #ffffff;
+    font-size: 40px;
+    font-family: 'Bangers', cursive;
+    position: relative;
+    top: 80px;
+    left: 20px;
+}
+
+.site-login{
+    position: relative;
+    top: 70px;
+    left: 200px;
+}
+
+.login-icon{
+    width: 20%;
+}
