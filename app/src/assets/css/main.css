@@ -25,3 +25,26 @@ header {
 .login-icon{
     width: 20%;
 }
+
+.site-description{
+}
+
+.site-message{
+    font-family: 'Caveat', cursive;
+    font-size: 40px;
+    text-align: center;
+    width: 50%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: auto;
+}
+
+.image-picture{
+    width: 50%;
+    margin: auto;
+}
+
+.image-picture img{
+    width: 100%;
+    margin: auto;
+}
