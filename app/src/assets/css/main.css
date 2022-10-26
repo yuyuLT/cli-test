@@ -11,7 +11,6 @@ header {
 }
 
 .site-title {
-  width: 20%;
   color: #ffffff;
   font-size: 40px;
   font-family: "Bangers", cursive;
@@ -28,9 +27,6 @@ header {
 
 .login-icon {
   width: 20%;
-}
-
-.site-description {
 }
 
 .site-message {
@@ -74,7 +70,7 @@ header {
 .register-button {
   width: 40%;
   height: 50px;
-  font-size: 30px;
+  font-size: 120%;
   font-family: "Bangers", cursive;
   color: #ffffff;
   background-color: blue;
@@ -82,4 +78,43 @@ header {
   border: none;
   margin: 0 auto;
   box-shadow: 5px 5px rgba(0, 0, 0, 0.3);
+  margin-bottom: 4%;
+}
+
+.memo-list {
+  margin-bottom: 4%;
+}
+
+.item-list {
+  list-style: none;
+  margin: 0 10%;
+  color: #668ad8;
+  border: dashed 2px #668ad8;
+  background: #f1f8ff;
+  padding: 0.5em;
+}
+
+.list-item {
+  display: flex;
+  line-height: 1.5;
+  padding: 0.5em 0;
+}
+
+.memo-date {
+  margin-right: 5%;
+  font-size: 100%;
+}
+
+.memo-content {
+  font-size: 100%;
+}
+
+footer {
+  height: 100px;
+  width: 100%;
+  background-color: #a9a9a9;
+}
+
+.copy-right {
+  text-align: center;
 }
