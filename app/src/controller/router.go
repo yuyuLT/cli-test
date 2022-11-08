@@ -9,5 +9,6 @@ func GetRouter() *gin.Engine {
 	r.LoadHTMLGlob("view/*html")
 	r.Static("assets", "./assets")
 	r.GET("/", ShowMessage)
+	r.POST("/api", Sendtext)
 	return r
 }
