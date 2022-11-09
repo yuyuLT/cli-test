@@ -2,6 +2,7 @@ package controller
 
 import (
 	"time"
+	// "encoding/json"
 	"mvc_test/model"
 	"github.com/gin-gonic/gin"
 )
@@ -23,17 +24,18 @@ func Sendtext(c *gin.Context) {
     */
 	text := c.PostForm("text")
 	today := time.Now()
-	const layout = "2022/11/25"
+	const layout = "2006/01/02"
 	date := (today.Format(layout))
 
 	//モック
-	list := []*Item{
-		{date, text},
-		{"2019/10/22", "おいしい秋刀魚の焼き方"},
-		{"2020/04/01", "浜松町絶妙に遠い"},
-		{"2022/08/05", "桐麺"},
-		{"2022/08/01", "福岡に住みたい"},
-	}
+	var list []map[string]string
+	list = append(list,map[string]string{"date":date, "text":text})
+	list = append(list,map[string]string{"date":"あああ", "text":"いいい"})
 
-	c.JSON(200, list)
+	// json_list, err :=  json.Marshal(list)
+
+	// if err == nil {
+		c.JSON(200, list)
+	// }
+	
 }
