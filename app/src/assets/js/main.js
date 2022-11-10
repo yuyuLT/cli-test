@@ -10,8 +10,12 @@ button.addEventListener("click", (e) => {
   axios
     .post("/api", data)
     .then((res) => {
-      console.log(res);
-      const memo_list = res.data;
+      const res_list = res.data;
+      Object.keys(res_list).forEach(function (key) {
+        console.log('date : ' + res_list[key].date);
+        console.log('text : ' +res_list[key].text);
+      });
+
     })
     .catch((error) => {
       console.log(error);
