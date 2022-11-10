@@ -22,6 +22,9 @@ func Sendtext(c *gin.Context) {
 		DB操作
 	*/
 	text := c.PostForm("text")
+	if text == "" {
+		text = "初期値"
+	}
 	today := time.Now()
 	const layout = "2006/01/02"
 	date := (today.Format(layout))
