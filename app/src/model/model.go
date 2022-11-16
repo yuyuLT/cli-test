@@ -39,7 +39,7 @@ func GetIdeas()([]Idea, error){
 	  panic("Failed to connect database")
 	  return nil, nil
 	}
-	err = db.Find(&ideas).Error
+	err = db.Limit(5).Order("created_at desc").Find(&ideas).Error
 	
 	return ideas,err
 }
