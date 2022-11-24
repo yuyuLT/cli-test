@@ -8,7 +8,7 @@ func GetRouter() *gin.Engine {
 	r := gin.Default()
 	r.LoadHTMLGlob("view/*html")
 	r.Static("assets", "./assets")
-	r.GET("/", ShowMessage)
+	r.GET("/", ShowTopPage)
 	r.POST("/api", Sendtext)
 	return r
 }

@@ -14,11 +14,6 @@ type Idea struct {
 
 var ideas []Idea
 
-func GetMessage()(string){
-	message := "変数で入力したメッセージです"
-	return message
-}
-
 func RegisterDataBase(date string,text string)bool{
 
 	db, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config{})

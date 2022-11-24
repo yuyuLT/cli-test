@@ -6,9 +6,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func ShowMessage(c *gin.Context) {
-	message := model.GetMessage()
-	c.HTML(200, "index.html", gin.H{"message": message})
+func ShowTopPage(c *gin.Context) {
+	c.HTML(200, "index.html", gin.H{"toppage": "idea_pot"})
 }
 
 func Sendtext(c *gin.Context) {
