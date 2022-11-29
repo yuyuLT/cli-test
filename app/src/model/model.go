@@ -3,6 +3,7 @@ package model
 import (
 	"gorm.io/gorm"
 	"gorm.io/driver/sqlite"
+	"gorm.io/gorm/clause"
 )
 
 type Idea struct {
@@ -34,7 +35,7 @@ func GetIdeas()([]Idea, error){
 	  panic("Failed to connect database")
 	  return nil, nil
 	}
-	err = db.Limit(5).Order("created_at desc").Find(&ideas).Error
+	err = db.Clauses(clause.OrderBy{Expression: clause.Expr{SQL: "RANDOM()", WithoutParentheses: true},}).Limit(5).Find(&ideas).Error
 	
 	return ideas,err
 }
