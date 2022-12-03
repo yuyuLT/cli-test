@@ -26,6 +26,11 @@ const displayList = function (e) {
 window.addEventListener("load", displayList);
 button.addEventListener("click", displayList);
 
+const closeButton = document.querySelector(".modal-close");
+closeButton.addEventListener("click", function () {
+  document.querySelector(".modal").style.display = "none";
+});
+
 function rewriteList($res_list) {
   let $list = '<ul class="item-list">\n';
   for (var $i = 0; $i < $res_list.length; $i++) {
