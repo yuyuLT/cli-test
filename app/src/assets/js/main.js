@@ -1,3 +1,5 @@
+const button = document.getElementById("register-button");
+
 const displayList = function (e) {
   e.preventDefault();
 
@@ -8,16 +10,16 @@ const displayList = function (e) {
   axios
     .post("/api", data)
     .then((res) => {
+      button.disabled = true;
       const res_list = res.data;
       document.querySelectorAll(".memo-list")[0].innerHTML =
         rewriteList(res_list);
+      button.disabled = false;
     })
     .catch((error) => {
       console.log(error);
     });
 };
-
-const button = document.getElementById("register-button");
 
 window.addEventListener("load", displayList);
 button.addEventListener("click", displayList);
