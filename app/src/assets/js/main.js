@@ -1,4 +1,4 @@
-const displayList = function(e) {
+const displayList = function (e) {
   e.preventDefault();
 
   const data = new FormData();
@@ -9,7 +9,8 @@ const displayList = function(e) {
     .post("/api", data)
     .then((res) => {
       const res_list = res.data;
-      document.querySelectorAll(".memo-list")[0].innerHTML = rewriteList(res_list);
+      document.querySelectorAll(".memo-list")[0].innerHTML =
+        rewriteList(res_list);
     })
     .catch((error) => {
       console.log(error);
@@ -23,12 +24,12 @@ button.addEventListener("click", displayList);
 
 function rewriteList($res_list) {
   let $list = '<ul class="item-list">\n';
-  for( var $i = 0; $i < $res_list.length; $i++ ) {
+  for (var $i = 0; $i < $res_list.length; $i++) {
     $list += '<li class="list-item">\n';
-    $list += `<div class="memo-date">${$res_list[$i].date}</div>\n`
-    $list += `<div class="memo-content">${$res_list[$i].text}</div>\n`
-    $list += '</li>\n';
+    $list += `<div class="memo-date">${$res_list[$i].date}</div>\n`;
+    $list += `<div class="memo-content">${$res_list[$i].text}</div>\n`;
+    $list += "</li>\n";
   }
-  $list += '</ul>';
+  $list += "</ul>";
   return $list;
 }
