@@ -5,12 +5,14 @@ const displayList = function (e) {
 
   const data = new FormData();
   const text = document.getElementById("register-text").value;
+  console.log(text);
   data.append("text", text);
 
   axios
     .post("/api", data)
     .then((res) => {
       button.disabled = true;
+      showModal(text);
       const res_list = res.data;
       document.querySelectorAll(".memo-list")[0].innerHTML =
         rewriteList(res_list);
@@ -34,4 +36,12 @@ function rewriteList($res_list) {
   }
   $list += "</ul>";
   return $list;
+}
+
+function showModal(text) {
+  if (text) {
+    const addMessage = `アイデア「${text}」を鍋に入れました！`;
+    document.querySelector(".modal-text").innerText = addMessage;
+    document.querySelector(".modal").style.display = "block";
+  }
 }
