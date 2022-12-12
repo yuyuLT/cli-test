@@ -11,4 +11,8 @@ RUN apk add --update gcc musl-dev \
 && go get gorm.io/driver/sqlite  \ 
 && go get gorm.io/gorm
 
+RUN go get golang.org/x/oauth2/google \ 
+&& go get golang.org/x/oauth2/google  \ 
+&& go get google.golang.org/api/sheets/v4
+
 CMD ["air", "-c", ".air.toml"]

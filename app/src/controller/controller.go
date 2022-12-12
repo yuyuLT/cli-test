@@ -1,13 +1,25 @@
 package controller
 
 import (
-	"time"
-	"mvc_test/model"
 	"github.com/gin-gonic/gin"
+	"time"
+	"net/http"
+	"mvc_test/model"
+	"mvc_test/config"
+	
 )
 
+func GoogleLogin(c *gin.Context) {
+	googleConfig := config.SetupConfig();
+	url := googleConfig.AuthCodeURL("state")
+	c.Redirect(http.StatusSeeOther, url)
+}
+
+func GoogleCallback(c *gin.Context) {
+}
+
 func ShowTopPage(c *gin.Context) {
-	c.HTML(200, "index.html", gin.H{"toppage": "idea_pot"})
+	c.HTML(200, "index.html", gin.H{"topPage": "idea_pot"})
 }
 
 func Sendtext(c *gin.Context) {
