@@ -13,6 +13,6 @@ RUN apk add --update gcc musl-dev \
 
 RUN go get golang.org/x/oauth2/google \ 
 && go get golang.org/x/oauth2/google  \ 
-&& go get google.golang.org/api/sheets/v4
+&& go get -u google.golang.org/api/oauth2/v2
 
 CMD ["air", "-c", ".air.toml"]

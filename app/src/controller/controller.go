@@ -2,24 +2,55 @@ package controller
 
 import (
 	"github.com/gin-gonic/gin"
+	oauthapi "google.golang.org/api/oauth2/v2"
 	"time"
 	"net/http"
+	"context"
+	"errors"
+	"fmt"
 	"mvc_test/model"
 	"mvc_test/config"
-	
 )
 
 func GoogleLogin(c *gin.Context) {
-	googleConfig := config.SetupConfig();
+	googleConfig := config.SetupConfig()
 	url := googleConfig.AuthCodeURL("state")
 	c.Redirect(http.StatusSeeOther, url)
 }
 
 func GoogleCallback(c *gin.Context) {
-}
+	config := config.SetupConfig()
+    context := context.Background()
+	code := c.Query("code")
 
-func ShowTopPage(c *gin.Context) {
-	c.HTML(200, "index.html", gin.H{"topPage": "idea_pot"})
+    tok, err := config.Exchange(context, code)
+    if err != nil {
+        panic(err)
+    }
+
+    if tok.Valid() == false {
+        panic(errors.New("vaild token"))
+    }
+
+    client := config.Client(context, tok)
+    svr, err := oauthapi.New(client)
+	ui, err := svr.Userinfo.Get().Do()
+
+	if err != nil {
+		fmt.Println("OAuth Error")
+		panic(err)
+	} 
+
+	userName := ui.Name
+	userEmail := ui.Email
+	fmt.Println(userName)
+	fmt.Println(userEmail)
+
+	c.HTML(200, "index.html", gin.H{
+		"name": userName,
+		"email": userEmail,
+	})
+	
 }
 
 func Sendtext(c *gin.Context) {
