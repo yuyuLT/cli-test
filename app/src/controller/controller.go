@@ -12,6 +12,12 @@ import (
 	"mvc_test/config"
 )
 
+func ShowTop(c *gin.Context) {
+	c.HTML(200, "index.html", gin.H{
+		"name": "name",
+	})
+}
+
 func GoogleLogin(c *gin.Context) {
 	googleConfig := config.SetupConfig()
 	url := googleConfig.AuthCodeURL("state")
@@ -46,10 +52,7 @@ func GoogleCallback(c *gin.Context) {
 	fmt.Println(userName)
 	fmt.Println(userEmail)
 
-	c.HTML(200, "index.html", gin.H{
-		"name": userName,
-		"email": userEmail,
-	})
+	c.Redirect(http.StatusFound, "/top")
 	
 }
 
