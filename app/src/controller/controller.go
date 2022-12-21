@@ -13,8 +13,12 @@ import (
 )
 
 func ShowTop(c *gin.Context) {
-	c.HTML(200, "index.html", gin.H{
-		"name": "name",
+	userName, _ := model.GetKey(c, "userName")
+	userEmail, _ := model.GetKey(c, "userEmail")
+
+	c.HTML(200, "index.html",  gin.H{
+		"userName": userName,
+		"userEmail": userEmail,
 	})
 }
 
@@ -49,8 +53,9 @@ func GoogleCallback(c *gin.Context) {
 
 	userName := ui.Name
 	userEmail := ui.Email
-	fmt.Println(userName)
-	fmt.Println(userEmail)
+
+	model.SetKey(c, "userName", userName)
+	model.SetKey(c, "userEmail", userEmail)
 
 	c.Redirect(http.StatusFound, "/top")
 	
