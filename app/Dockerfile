@@ -15,4 +15,6 @@ RUN go get golang.org/x/oauth2/google \
 && go get golang.org/x/oauth2/google  \ 
 && go get -u google.golang.org/api/oauth2/v2
 
+RUN go get github.com/joho/godotenv
+
 CMD ["air", "-c", ".air.toml"]
