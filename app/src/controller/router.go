@@ -8,7 +8,9 @@ func GetRouter() *gin.Engine {
 	r := gin.Default()
 	r.LoadHTMLGlob("view/*html")
 	r.Static("assets", "./assets")
-	r.GET("/", ShowTopPage)
+	r.GET("/", GoogleLogin)
+	r.GET("/google/callback", GoogleCallback)
+	r.GET("/top", ShowTop)
 	r.POST("/api", Sendtext)
 	return r
 }

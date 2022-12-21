@@ -19,3 +19,9 @@ go 1.19
 5. docker-compose run --rm app go mod tidy
 
 6. docker-compose up
+
+7. make .env in env directory 
+
+ClientID=XXXXX
+ClientSecret=XXXXX
+RedirectURL=http://{HOST_NAME}/google/callback
