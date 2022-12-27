@@ -68,6 +68,8 @@ func GoogleCallback(c *gin.Context) {
 
 func Sendtext(c *gin.Context) {
 
+	model.CreateTable()
+
 	today := time.Now()
 	const layout = "2006/01/02"
 	date := (today.Format(layout))
@@ -85,6 +87,8 @@ func Sendtext(c *gin.Context) {
 	for _, v := range ideas {
 		list = append(list, map[string]string{"date": v.Date, "text": v.Text})
 	}
+
+	fmt.Println(list)
 
 	c.JSON(200, list)
 

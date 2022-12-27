@@ -14,8 +14,10 @@ const displayList = function (e) {
       button.disabled = true;
       showModal(text);
       const res_list = res.data;
-      document.querySelectorAll(".memo-list")[0].innerHTML =
-        rewriteList(res_list);
+      if (null !== res_list) {
+        document.querySelectorAll(".memo-list")[0].innerHTML = rewriteList(res_list);
+      }
+
       button.disabled = false;
     })
     .catch((error) => {
