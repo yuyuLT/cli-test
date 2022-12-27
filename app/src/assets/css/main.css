@@ -19,14 +19,15 @@ header {
   left: 20px;
 }
 
-.site-login {
-  position: relative;
-  top: 70px;
-  left: 200px;
+.user-area{
+  margin: auto 1rem;
+  width: 100px;
+  height: 100px;
 }
 
-.login-icon {
-  width: 20%;
+.user-icon {
+  width: 100%;
+  height: 100%;
 }
 
 .site-message {
