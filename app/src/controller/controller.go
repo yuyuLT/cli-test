@@ -67,7 +67,7 @@ func GoogleCallback(c *gin.Context) {
 }
 
 func Sendtext(c *gin.Context) {
-
+	email, _ := model.GetKey(c, "userEmail")
 	model.CreateTable()
 
 	today := time.Now()
@@ -78,10 +78,10 @@ func Sendtext(c *gin.Context) {
 	if text == "" {
 		text = "初期値"
 	} else {
-		model.RegisterDataBase(date, text)
+		model.RegisterDataBase(email, date, text)
 	}
 
-	ideas, _ := model.GetIdeas()
+	ideas, _ := model.GetIdeas(email)
 
 	var list []map[string]string
 	for _, v := range ideas {

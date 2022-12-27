@@ -18,7 +18,7 @@ func init() {
 }
 
 func SetKey(ctx context.Context, key string, value string) error {
-	if err := rClient.Set(ctx, key, value, 10*time.Second).Err(); err != nil {
+	if err := rClient.Set(ctx, key, value, 6000*time.Second).Err(); err != nil {
 		return err
 	}
 	return nil
