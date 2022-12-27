@@ -88,8 +88,6 @@ func Sendtext(c *gin.Context) {
 		list = append(list, map[string]string{"date": v.Date, "text": v.Text})
 	}
 
-	fmt.Println(list)
-
 	c.JSON(200, list)
 
 }
