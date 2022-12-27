@@ -68,6 +68,8 @@ func GoogleCallback(c *gin.Context) {
 
 func Sendtext(c *gin.Context) {
 
+	model.CreateTable()
+
 	today := time.Now()
 	const layout = "2006/01/02"
 	date := (today.Format(layout))
