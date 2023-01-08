@@ -1,10 +1,15 @@
+/*
+Copyright © 2023 NAME HERE <EMAIL ADDRESS>
+
+*/
 package main
 
 import (
-	"mvc_test/controller"
+	"fmt" 
+	"mvc_test/cmd"
 )
 
 func main() {
-	router := controller.GetRouter()
-	router.Run()
+	fmt.Println("Main message")
+	cmd.Execute()
 }
