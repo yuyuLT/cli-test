@@ -24,8 +24,25 @@ to quickly create a Cobra application.`,
 
 	Args: func(cmd *cobra.Command, args []string) error {
 		if len(args) < 3 {
-			return errors.New("requires one sign and two numbers")
+			return errors.New("requires one sign and two numbers.")
 		}
+
+		if args[0] != "add" && args[0] != "sub" {
+			return errors.New("sign is 'add' or 'sub'.")
+		}
+
+		_, err := strconv.Atoi(args[1])
+		if err != nil{
+			fmt.Println(args[1])
+			return errors.New("This argument could not be converted.")
+		}
+
+		_, err = strconv.Atoi(args[2])
+		if err != nil{
+			fmt.Println(args[2])
+			return errors.New("This argument could not be converted.")
+		}
+		
 		return nil
 	},
 
