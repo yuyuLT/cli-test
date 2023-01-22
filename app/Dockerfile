@@ -5,4 +5,5 @@ COPY ./app/src .
 
 RUN apk upgrade --update && apk --no-cache add git
 
-RUN  go install github.com/spf13/cobra-cli@latest
+RUN go install github.com/spf13/cobra-cli@latest
+RUN go get github.com/mtslzr/pokeapi-go
