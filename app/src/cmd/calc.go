@@ -1,13 +1,13 @@
 /*
 Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
 import (
+	"errors"
 	"fmt"
 	"strconv"
-	"errors"
+
 	"github.com/spf13/cobra"
 )
 
@@ -32,17 +32,17 @@ to quickly create a Cobra application.`,
 		}
 
 		_, err := strconv.Atoi(args[1])
-		if err != nil{
+		if err != nil {
 			fmt.Println(args[1])
 			return errors.New("This argument could not be converted.")
 		}
 
 		_, err = strconv.Atoi(args[2])
-		if err != nil{
+		if err != nil {
 			fmt.Println(args[2])
 			return errors.New("This argument could not be converted.")
 		}
-		
+
 		return nil
 	},
 
@@ -51,9 +51,9 @@ to quickly create a Cobra application.`,
 		result := 0
 		num1, _ := strconv.Atoi(args[1])
 		num2, _ := strconv.Atoi(args[2])
-		if args[0] == "add"{
+		if args[0] == "add" {
 			result = num1 + num2
-		}else if args[0] == "sub"{
+		} else if args[0] == "sub" {
 			result = num1 - num2
 		}
 
