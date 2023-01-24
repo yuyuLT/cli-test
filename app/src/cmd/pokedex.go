@@ -6,7 +6,9 @@ package cmd
 
 import (
 	"fmt"
-	"os"
+	"time"
+	"strconv"
+	"math/rand"
 	"github.com/mtslzr/pokeapi-go"
 	"github.com/spf13/cobra"
 )
@@ -22,33 +24,66 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		
-		pokemon := args[0] 
 
-		p, _ := pokeapi.PokemonSpecies(pokemon)
-		flavor := p.FlavorTextEntries
+		pokemon := args[0]
+		isQuiz, _ := cmd.Flags().GetBool("quiz")
+		text := getText(pokemon)
 
-		if(flavor != nil){
-			for i := 0; i < len(flavor); i++ {
-				if flavor[i].Language.Name == "ja" {
-					fmt.Println(flavor[i].FlavorText)
-					os.Exit(0)
-				}
+		if isQuiz {
+			rand.Seed(time.Now().UnixNano())
+			random := rand.Intn(898) + 1
+			dummyText := getText(strconv.Itoa(random))
+
+			choices := rand.Intn(2)
+
+			if choices == 0 {
+				fmt.Println(text)
+			}else {
+				fmt.Println(dummyText)
+			}
+
+			var answer string
+			fmt.Print("Is this the Pokémon you chose? (Y/n) >")
+			fmt.Scan(&answer)
+
+			if (answer == "Y" && choices == 0) || (answer == "n" && choices == 1) {
+				fmt.Println("right!!")
+			} else {
+				fmt.Println("wrong!!")
+			}
+
+			
+		}else {
+			if text == ""{
+				fmt.Println("データがありません")
+			}else{
+				fmt.Println(text)
 			}
 		}
 
-		fmt.Println("データがありません")
-
 		
-	
-	
-
 	},
 }
 
+func getText(pokemon string) string{
+	p, _ := pokeapi.PokemonSpecies(pokemon)
+	flavor := p.FlavorTextEntries
+
+	if(flavor != nil){
+		for i := 0; i < len(flavor); i++ {
+			if flavor[i].Language.Name == "ja" {
+				return flavor[i].FlavorText
+			}	
+		}
+	}
+
+	return ""
+}
+
+
 func init() {
 	rootCmd.AddCommand(pokedexCmd)
-
+	pokedexCmd.Flags().BoolP("quiz", "q", false, "quiz mode")
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
