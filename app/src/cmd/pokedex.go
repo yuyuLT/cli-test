@@ -43,7 +43,7 @@ to quickly create a Cobra application.`,
 			}
 
 			var answer string
-			fmt.Print("Is this the Pokémon you chose? (Y/n) >")
+			fmt.Print("Is this the Pokémon you chose? (Y/n) > ")
 			fmt.Scan(&answer)
 
 			if (answer == "Y" && choices == 0) || (answer == "n" && choices == 1) {
