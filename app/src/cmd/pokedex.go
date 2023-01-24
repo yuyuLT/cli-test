@@ -6,6 +6,7 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 	"github.com/mtslzr/pokeapi-go"
 	"github.com/spf13/cobra"
 )
@@ -22,12 +23,26 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		
-		name := args[0]
-		datas, _ := pokeapi.Pokemon(name)
-		status := []string{"HP","攻撃","防御","特攻","特防","素早さ"}
-		for i := 0; i < 6; i++ {
-			fmt.Printf("%s:%d\n",status[i],datas.Stats[i].BaseStat)	
+		pokemon := args[0] 
+
+		p, _ := pokeapi.PokemonSpecies(pokemon)
+		flavor := p.FlavorTextEntries
+
+		if(flavor != nil){
+			for i := 0; i < len(flavor); i++ {
+				if flavor[i].Language.Name == "ja" {
+					fmt.Println(flavor[i].FlavorText)
+					os.Exit(0)
+				}
+			}
 		}
+
+		fmt.Println("データがありません")
+
+		
+	
+	
+
 	},
 }
 
