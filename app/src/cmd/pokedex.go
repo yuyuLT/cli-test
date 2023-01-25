@@ -25,14 +25,20 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 
+		language := "ja"
+		isEn, _ := cmd.Flags().GetBool("english")
+		if isEn {
+			language = "en"
+		}
+
 		pokemon := args[0]
 		isQuiz, _ := cmd.Flags().GetBool("quiz")
-		text := getText(pokemon)
+		text := getText(pokemon, language)
 
 		if isQuiz {
 			rand.Seed(time.Now().UnixNano())
 			random := rand.Intn(898) + 1
-			dummyText := getText(strconv.Itoa(random))
+			dummyText := getText(strconv.Itoa(random), language)
 
 			choices := rand.Intn(2)
 
@@ -43,6 +49,8 @@ to quickly create a Cobra application.`,
 			}
 
 			var answer string
+
+			fmt.Println()
 			fmt.Print("Is this the Pokémon you chose? (y/n) > ")
 			fmt.Scan(&answer)
 
@@ -65,13 +73,13 @@ to quickly create a Cobra application.`,
 	},
 }
 
-func getText(pokemon string) string {
+func getText(pokemon string, language string) string {
 	p, _ := pokeapi.PokemonSpecies(pokemon)
 	flavor := p.FlavorTextEntries
 
 	if flavor != nil {
 		for i := 0; i < len(flavor); i++ {
-			if flavor[i].Language.Name == "ja" {
+			if flavor[i].Language.Name == language {
 				return flavor[i].FlavorText
 			}
 		}
@@ -83,6 +91,7 @@ func getText(pokemon string) string {
 func init() {
 	rootCmd.AddCommand(pokedexCmd)
 	pokedexCmd.Flags().BoolP("quiz", "q", false, "quiz mode")
+	pokedexCmd.Flags().BoolP("english", "e", false, "english mode")
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
