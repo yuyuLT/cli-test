@@ -7,13 +7,13 @@ import (
 	"fmt"
 	"math/rand"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/mtslzr/pokeapi-go"
 	"github.com/spf13/cobra"
 )
 
-// pokedexCmd represents the pokedex command
 var pokedexCmd = &cobra.Command{
 	Use:   "pokedex",
 	Short: "A brief description of your command",
@@ -80,7 +80,7 @@ func getText(pokemon string, language string) string {
 	if flavor != nil {
 		for i := 0; i < len(flavor); i++ {
 			if flavor[i].Language.Name == language {
-				return flavor[i].FlavorText
+				return strings.ReplaceAll(flavor[i].FlavorText, "\n", " ")
 			}
 		}
 	}
@@ -92,13 +92,4 @@ func init() {
 	rootCmd.AddCommand(pokedexCmd)
 	pokedexCmd.Flags().BoolP("quiz", "q", false, "quiz mode")
 	pokedexCmd.Flags().BoolP("english", "e", false, "english mode")
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// pokedexCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// pokedexCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
