@@ -1,14 +1,14 @@
 /*
 Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
 import (
 	"fmt"
-	"time"
-	"strconv"
 	"math/rand"
+	"strconv"
+	"time"
+
 	"github.com/mtslzr/pokeapi-go"
 	"github.com/spf13/cobra"
 )
@@ -38,12 +38,12 @@ to quickly create a Cobra application.`,
 
 			if choices == 0 {
 				fmt.Println(text)
-			}else {
+			} else {
 				fmt.Println(dummyText)
 			}
 
 			var answer string
-			fmt.Print("Is this the Pokémon you chose? (Y/n) > ")
+			fmt.Print("Is this the Pokémon you chose? (y/n) > ")
 			fmt.Scan(&answer)
 
 			if (answer == "Y" && choices == 0) || (answer == "n" && choices == 1) {
@@ -52,34 +52,31 @@ to quickly create a Cobra application.`,
 				fmt.Println("wrong!!")
 			}
 
-			
-		}else {
-			if text == ""{
+		} else {
+			if text == "" {
 				fmt.Println("データがありません")
-			}else{
+			} else {
 				fmt.Println(text)
 			}
 		}
 
-		
 	},
 }
 
-func getText(pokemon string) string{
+func getText(pokemon string) string {
 	p, _ := pokeapi.PokemonSpecies(pokemon)
 	flavor := p.FlavorTextEntries
 
-	if(flavor != nil){
+	if flavor != nil {
 		for i := 0; i < len(flavor); i++ {
 			if flavor[i].Language.Name == "ja" {
 				return flavor[i].FlavorText
-			}	
+			}
 		}
 	}
 
 	return ""
 }
-
 
 func init() {
 	rootCmd.AddCommand(pokedexCmd)
