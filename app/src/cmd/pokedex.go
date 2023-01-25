@@ -46,11 +46,13 @@ to quickly create a Cobra application.`,
 			fmt.Print("Is this the Pokémon you chose? (y/n) > ")
 			fmt.Scan(&answer)
 
-			if (answer == "Y" && choices == 0) || (answer == "n" && choices == 1) {
-				fmt.Println("right!!")
+			fmt.Println()
+			if (answer == "y" && choices == 0) || (answer == "n" && choices == 1) {
+				fmt.Println("Right!!")
 			} else {
-				fmt.Println("wrong!!")
+				fmt.Println("Wrong!!")
 			}
+			fmt.Println()
 
 		} else {
 			if text == "" {
