@@ -68,7 +68,8 @@ to quickly create a Cobra application.`,
 			if text == "" {
 				fmt.Println("データがありません")
 			} else {
-				fmt.Println(text)
+				name := getName(pokemon, language)
+				fmt.Println(name, text)
 			}
 		}
 
@@ -83,6 +84,21 @@ func getText(pokemon string, language string) string {
 		for i := 0; i < len(flavor); i++ {
 			if flavor[i].Language.Name == language {
 				return strings.ReplaceAll(flavor[i].FlavorText, "\n", " ")
+			}
+		}
+	}
+
+	return ""
+}
+
+func getName(pokemon, language string) string {
+	p, _ := pokeapi.PokemonSpecies(pokemon)
+	names := p.Names
+
+	if names != nil {
+		for i := 0; i < len(names); i++ {
+			if names[i].Language.Name == language {
+				return strings.ReplaceAll(names[i].Name, "\n", " ")
 			}
 		}
 	}
