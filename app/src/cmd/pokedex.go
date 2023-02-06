@@ -69,7 +69,9 @@ to quickly create a Cobra application.`,
 				fmt.Println("データがありません")
 			} else {
 				name := getName(pokemon, language)
-				fmt.Println(name, text)
+				fmt.Println(name)
+				fmt.Println("[[slnc 800]]")
+				fmt.Println(text)
 			}
 		}
 
