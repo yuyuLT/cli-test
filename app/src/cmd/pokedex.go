@@ -85,7 +85,7 @@ func getText(pokemon string, language string) string {
 	if flavor != nil {
 		for i := 0; i < len(flavor); i++ {
 			if flavor[i].Language.Name == language {
-				return strings.ReplaceAll(flavor[i].FlavorText, "\n", "[[slnc 500]]")
+				return strings.ReplaceAll(flavor[i].FlavorText, "。", "[[slnc 500]]")
 			}
 		}
 	}
